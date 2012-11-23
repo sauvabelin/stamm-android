@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Stamm</string>
+    <string name="title_section_news">News</string>
+    <string name="title_section_com">Communications</string>
+    <string name="title_section_agenda">Agenda</string>
+    <string name="menu_settings">Settings</string>
+
+</resources>
