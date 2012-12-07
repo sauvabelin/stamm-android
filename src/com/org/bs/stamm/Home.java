@@ -1,6 +1,7 @@
 package com.org.bs.stamm;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +15,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class Home extends FragmentActivity {
@@ -75,16 +80,17 @@ public class Home extends FragmentActivity {
         	
             switch (position) {
             default:
-            case 2:
-            	fragment = new NewsFragment();
-                break;
-            case 1:
-            	fragment = new ComFragment();
-                break;
             case 0:
-            	fragment = new AgendaFragment();
+            	fragment = new NewsList();
             	break;
-
+            	
+            case 1:
+            	fragment = new ComList();
+                break;
+                
+            case 2:
+            	fragment = new EventsList();
+                break;
 
             }
                 
@@ -113,36 +119,54 @@ public class Home extends FragmentActivity {
         }
     }
     
-    public static class ComFragment extends Fragment {
-    	public ComFragment() {}
+    public static class ComList extends Fragment {
+    	public ComList() {}
     	
     	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
+            
+    		
+    		TextView textView = new TextView(getActivity());
             textView.setGravity(Gravity.CENTER);
             textView.setText("Communications!");
+            
+            
+            
             return textView;
     	}
     }
 
-    public static class AgendaFragment extends Fragment {
-    	public AgendaFragment() {}
-    	
-    	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            textView.setText("News!");
-            return textView;
-    	}
-    }
-    
-    public static class NewsFragment extends Fragment {
-    	public NewsFragment() {}
+    public static class EventsList extends Fragment {
+    	public EventsList() {}
     	
     	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             TextView textView = new TextView(getActivity());
             textView.setGravity(Gravity.CENTER);
             textView.setText("Agenda!");
             return textView;
+    	}
+    }
+    
+    public static class NewsList extends Fragment {
+    	public NewsList() {}
+    	
+    	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view;
+            view = inflater.inflate(R.layout.news_list, null);
+            
+            ListView listView = (ListView) getView().findViewById(R.id.newslist);
+            String[] values = new String[] { 
+	    		"Les résultats du PCDMD sont publiés!", 
+	    		"Le vin chaud du mat ce mercredi",
+	    		"Ramenez votre mat!",
+	    		"La galerie photo fonctionne à nouveau",
+	    		"Nouvel an"
+            };
+            
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getView().getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, values);
+            
+            listView.setAdapter(adapter);
+            
+            return view;
     	}
     }
     
