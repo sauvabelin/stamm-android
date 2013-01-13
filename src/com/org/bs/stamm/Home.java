@@ -1,25 +1,12 @@
 package com.org.bs.stamm;
 
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public class Home extends FragmentActivity {
 
@@ -37,21 +24,23 @@ public class Home extends FragmentActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    
+    private static final int NUMBER_PAGES = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
+        
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
+        
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
+        Mocks.initInstance();
     }
 
     @Override
@@ -81,28 +70,34 @@ public class Home extends FragmentActivity {
             switch (position) {
             default:
             case 0:
-            	fragment = new NewsList();
+            	fragment = new NewsListFragment();
             	break;
             	
             case 1:
-            	fragment = new ComList();
+            	fragment = new ComListFragment();
                 break;
                 
             case 2:
-            	fragment = new EventsList();
+            	fragment = new EventsListFragment();
                 break;
+            
+            case 3:
+            	fragment = new ActivitiesMapFragment();
+            	break;
+            	
+            case 4:
+//            	fragment = new FilesFragment();
+            	break;
 
             }
-                
             fragment.setArguments(args);
-
             return fragment;
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return NUMBER_PAGES;
         }
 
         @Override
@@ -114,60 +109,14 @@ public class Home extends FragmentActivity {
                     return getString(R.string.title_section_com).toUpperCase();
                 case 2:
                     return getString(R.string.title_section_agenda).toUpperCase();
+                case 3:
+                    return getString(R.string.title_section_map).toUpperCase();
+                case 4:
+                    return getString(R.string.title_section_files).toUpperCase();
             }
             return null;
         }
     }
-    
-    public static class ComList extends Fragment {
-    	public ComList() {}
-    	
-    	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            
-    		
-    		TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            textView.setText("Communications!");
-            
-            
-            
-            return textView;
-    	}
-    }
-
-    public static class EventsList extends Fragment {
-    	public EventsList() {}
-    	
-    	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            TextView textView = new TextView(getActivity());
-            textView.setGravity(Gravity.CENTER);
-            textView.setText("Agenda!");
-            return textView;
-    	}
-    }
-    
-    public static class NewsList extends Fragment {
-    	public NewsList() {}
-    	
-    	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View view;
-            view = inflater.inflate(R.layout.news_list, null);
-            
-            ListView listView = (ListView) getView().findViewById(R.id.newslist);
-            String[] values = new String[] { 
-	    		"Les résultats du PCDMD sont publiés!", 
-	    		"Le vin chaud du mat ce mercredi",
-	    		"Ramenez votre mat!",
-	    		"La galerie photo fonctionne à nouveau",
-	    		"Nouvel an"
-            };
-            
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getView().getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, values);
-            
-            listView.setAdapter(adapter);
-            
-            return view;
-    	}
-    }
-    
 }
+
+

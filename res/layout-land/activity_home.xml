@@ -1,6 +1,7 @@
 <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/pager"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home" >
@@ -19,5 +20,12 @@
         android:paddingBottom="4dp"
         android:paddingTop="4dp"
         android:textColor="#fff" />
+    
+   <FrameLayout android:id="@+id/details" 
+       android:layout_weight="1"
+       android:layout_width="0px" 
+       android:layout_height="match_parent"
+       android:background="?android:attr/detailsElementBackground" />
+
     
 </android.support.v4.view.ViewPager>
