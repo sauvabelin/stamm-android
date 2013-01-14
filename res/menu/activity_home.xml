@@ -1,5 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <item
+        android:id="@+id/menu_stamm_mode"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/view_as_grid"
+        android:title="@string/menu_stamm_mode"/>
+    
     <item
         android:id="@+id/menu_settings"
         android:orderInCategory="100"

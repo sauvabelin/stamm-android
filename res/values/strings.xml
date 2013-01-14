@@ -7,8 +7,11 @@
     <string name="title_section_agenda">Agenda</string>
     <string name="title_section_map">Carte</string>
     <string name="title_section_files">Fichiers</string>
+    <string name="menu_stamm_mode">Passer en mode Stamm</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_about">A propos</string>
+    
+    
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin accumsan mauris at mollis. Mauris pulvinar venenatis egestas. Nunc mattis iaculis pellentesque. Aliquam odio mi, vestibulum ac convallis et, tempor eget metus. Pellentesque iaculis, est quis sollicitudin porttitor, lectus dolor placerat augue, nec congue felis eros vitae sapien. Fusce vel tellus nunc, at mattis arcu. Nam magna mi, tempor eget congue ac, posuere id enim. Aenean ac lorem quis sem feugiat elementum. Pellentesque libero turpis, ultricies ut eleifend a, ultrices ullamcorper risus. Morbi sodales adipiscing consequat. Praesent dapibus, enim quis viverra condimentum, diam lacus gravida leo, quis viverra massa enim vitae sapien. Cras id justo a mauris laoreet egestas et in libero. Nam leo nunc, egestas et venenatis nec, dignissim in odio. Phasellus purus dui, interdum vel ultrices nec, luctus ac sapien.</string>
 
 </resources>

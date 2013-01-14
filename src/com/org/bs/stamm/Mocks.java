@@ -81,25 +81,25 @@ public class Mocks {
 		
 		files.addElement(new File(
 				"Inscription cours A1",
-				"inscription_cours_a1",
+				"inscription_cours_a1.pdf",
 				"pdf"
 		));
 		
 		files.addElement(new File(
 				"Inscription cours A2",
-				"inscription_cours_a2",
+				"inscription_cours_a2.pdf",
 				"pdf"
 		));
 		
 		files.addElement(new File(
 				"Inscription cours B1",
-				"inscription_cours_b1",
+				"inscription_cours_b1.pdf",
 				"pdf"
 		));	
 		
 		files.addElement(new File(
 				"Inscription cours B2",
-				"inscription_cours_b2",
+				"inscription_cours_b2.pdf",
 				"pdf"
 		));
 	}
