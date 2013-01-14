@@ -9,6 +9,7 @@ public class Mocks {
 	
 	private Vector<News> news = new Vector<News>();
 	private Vector<Event> events = new Vector<Event>();
+	private Vector<File> files = new Vector<File>();
 	
 	public static void initInstance() {
 		if(instance == null)
@@ -76,6 +77,31 @@ public class Mocks {
 				"",
 				""
 		));
+		
+		
+		files.addElement(new File(
+				"Inscription cours A1",
+				"inscription_cours_a1",
+				"pdf"
+		));
+		
+		files.addElement(new File(
+				"Inscription cours A2",
+				"inscription_cours_a2",
+				"pdf"
+		));
+		
+		files.addElement(new File(
+				"Inscription cours B1",
+				"inscription_cours_b1",
+				"pdf"
+		));	
+		
+		files.addElement(new File(
+				"Inscription cours B2",
+				"inscription_cours_b2",
+				"pdf"
+		));
 	}
 	
 	public static Mocks getInstance() {
@@ -115,4 +141,20 @@ public class Mocks {
 		}
 		return eventTitles;
 	}
+	
+	
+	public Vector<File> getFiles() {
+		return files;
+	}
+	
+	public String[] getFilesNames() {
+		String[] filesNames = new String[files.size()];
+		
+		for (int i = 0; i<files.size(); i++) {
+			filesNames[i] = files.get(i).getName();
+		}
+		return filesNames;
+	}
+	
+	
 }

@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 public class ActivitiesMapFragment extends Fragment {
 	
 	public void onActivityCreated(Bundle savedInstanceState) {
-		
+		super.onActivityCreated(savedInstanceState);
 	}
 	
 }

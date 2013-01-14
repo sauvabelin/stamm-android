@@ -86,7 +86,7 @@ public class Home extends FragmentActivity {
             	break;
             	
             case 4:
-//            	fragment = new FilesFragment();
+            	fragment = new FilesFragment();
             	break;
 
             }
