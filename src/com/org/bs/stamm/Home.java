@@ -1,5 +1,8 @@
 package com.org.bs.stamm;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+
 
 public class Home extends FragmentActivity {
 
@@ -27,22 +31,31 @@ public class Home extends FragmentActivity {
      */
     ViewPager mViewPager;
     
-    private static final int NUMBER_PAGES = 5;
+    private static final int NUMBER_PAGES = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
         
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the app.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
         Mocks.initInstance();
+        
+        Calendar c = Calendar.getInstance();
+        
+        if(c.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY && c.get(Calendar.HOUR_OF_DAY) > 18 && c.get(Calendar.HOUR_OF_DAY) < 22 ) {
+        	Intent intent = new Intent(this, StammModeActivity.class);
+        	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        } else {
+	        setContentView(R.layout.activity_home);
+	        
+	        // Create the adapter that will return a fragment for each of the three
+	        // primary sections of the app.
+	        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+	        
+	        // Set up the ViewPager with the sections adapter.
+	        mViewPager = (ViewPager) findViewById(R.id.pager);
+	        mViewPager.setAdapter(mSectionsPagerAdapter);
+        }
     }
 
     @Override
@@ -50,21 +63,34 @@ public class Home extends FragmentActivity {
     	
         // Inflate the menu; this adds items to the action bar if it is present.
     	getMenuInflater().inflate(R.menu.activity_home, menu);
+		menu.removeItem(R.id.menu_normal_mode);
         return true;
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, Home.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+    	Intent intent;
+    	
+    	switch (item.getItemId()) {
+        case R.id.menu_stamm_mode:
+            intent = new Intent(this, StammModeActivity.class);
+        	break;
+        	
+        case R.id.menu_settings:
+            intent = new Intent(this, SettingsActivity.class);
+            break;
+            
+        case R.id.menu_about:
+        	return true;
+            
+        default:
+            return super.onOptionsItemSelected(item);
         }
+    	
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    	
+        return true;
     }
     
     
@@ -85,24 +111,20 @@ public class Home extends FragmentActivity {
             Bundle args = new Bundle();
         	
             switch (position) {
-            default:
             case 0:
-            	fragment = new NewsListFragment();
-            	break;
-            	
-            case 1:
-            	fragment = new ComListFragment();
-                break;
-                
-            case 2:
             	fragment = new EventsListFragment();
                 break;
+               
+            default:
+            case 1:
+            	fragment = new NewsListFragment();
+            	break;
             
-            case 3:
+            case 2:
             	fragment = new ActivitiesMapFragment();
             	break;
             	
-            case 4:
+            case 3:
             	fragment = new FilesFragment();
             	break;
 
@@ -113,23 +135,21 @@ public class Home extends FragmentActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return NUMBER_PAGES;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
+            
+        	switch (position) {
                 case 0:
-                    return getString(R.string.title_section_news).toUpperCase();
+                    return getString(R.string.title_section_agenda).toUpperCase(Locale.getDefault());
                 case 1:
-                    return getString(R.string.title_section_com).toUpperCase();
+                    return getString(R.string.title_section_news).toUpperCase(Locale.getDefault());
                 case 2:
-                    return getString(R.string.title_section_agenda).toUpperCase();
+                    return getString(R.string.title_section_map).toUpperCase(Locale.getDefault());
                 case 3:
-                    return getString(R.string.title_section_map).toUpperCase();
-                case 4:
-                    return getString(R.string.title_section_files).toUpperCase();
+                    return getString(R.string.title_section_files).toUpperCase(Locale.getDefault());
             }
             return null;
         }

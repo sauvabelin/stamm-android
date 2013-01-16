@@ -1,15 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Stamm</string>
+    <!-- Home activity -->
+    <string name="app_name">BS</string>
     <string name="title_section_news">News</string>
-    <string name="title_section_com">Annonces</string>
     <string name="title_section_agenda">Agenda</string>
     <string name="title_section_map">Carte</string>
     <string name="title_section_files">Fichiers</string>
-    <string name="menu_stamm_mode">Passer en mode Stamm</string>
+    
+    <string name="menu_stamm_mode">Mode Stamm</string>
+    <string name="menu_normal_mode">Mode normal</string>
     <string name="menu_settings">Paramètres</string>
     <string name="menu_about">A propos</string>
+    
+    
+    <!-- Settings activity -->
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="pref_function">Fonction</string>
+    <string name="pref_function_default">toutes</string>
+
+    <string-array name="pref_function_entries">
+        <item>Toutes les fonctions</item>
+        <item>Public</item>
+        <item>CP/CL</item>
+        <item>Adjoint</item>
+        <item>CU</item>
+    </string-array>
+    <string-array name="pref_function_values">
+        <item>toutes</item>
+        <item>public</item>
+        <item>cp</item>
+        <item>adj</item>
+        <item>cu</item>
+    </string-array>
+
+    <string name="pref_branche">Branche</string>
+    <string name="pref_branche_default">toutes</string>
+
+    <string-array name="pref_branche_entries">
+        <item>Toutes les branches</item>
+        <item>Louveteaux</item>
+        <item>Louvettes</item>
+        <item>Éclaireurs</item>
+        <item>Éclaireuses</item>
+        <item>Pionniers/cordées</item>
+        <item>Clans</item>
+    </string-array>
+    <string-array name="pref_branche_values">
+        <item>toutes</item>
+        <item>louveteaux</item>
+        <item>louvettes</item>
+        <item>eclaireurs</item>
+        <item>eclaireuses</item>
+        <item>pionniers_cordees</item>
+        <item>clans</item>
+    </string-array>
+
+    <string name="pref_autoStammMode">Mode Stamm auto</string>
+    <string name="pref_autoStammMode_sumOn">Le mode Stamm s\'active automatiquement durant le Stamm</string>
+    <string name="pref_autoStammMode_sumOff">Pas d\'activation automatique du mode Stamm</string>
+    
+    
+    
+    <!-- Stamm mode activity -->
+    <string name="title_activity_stamm_mode">Stamm</string>
+    
     
     
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sollicitudin accumsan mauris at mollis. Mauris pulvinar venenatis egestas. Nunc mattis iaculis pellentesque. Aliquam odio mi, vestibulum ac convallis et, tempor eget metus. Pellentesque iaculis, est quis sollicitudin porttitor, lectus dolor placerat augue, nec congue felis eros vitae sapien. Fusce vel tellus nunc, at mattis arcu. Nam magna mi, tempor eget congue ac, posuere id enim. Aenean ac lorem quis sem feugiat elementum. Pellentesque libero turpis, ultricies ut eleifend a, ultrices ullamcorper risus. Morbi sodales adipiscing consequat. Praesent dapibus, enim quis viverra condimentum, diam lacus gravida leo, quis viverra massa enim vitae sapien. Cras id justo a mauris laoreet egestas et in libero. Nam leo nunc, egestas et venenatis nec, dignissim in odio. Phasellus purus dui, interdum vel ultrices nec, luctus ac sapien.</string>

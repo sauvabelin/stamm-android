@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="16" />
+        android:targetSdkVersion="17" />
 
     <application
         android:allowBackup="true"
@@ -22,9 +22,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="NewsDetailsActivity"></activity>
-        <activity android:name="EventDetailsActivity"></activity>
-        
+        <activity android:name="com.org.bs.stamm.NewsDetailsActivity" >
+        </activity>
+        <activity android:name="com.org.bs.stamm.EventDetailsActivity" >
+        </activity>
+        <activity
+            android:name="com.org.bs.stamm.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.org.bs.stamm.StammModeActivity"
+            android:label="@string/title_activity_stamm_mode" >
+        </activity>
     </application>
 
 </manifest>

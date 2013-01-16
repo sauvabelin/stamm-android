@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ListPreference
+        android:dependency="pref_function"
+        android:key="pref_function"
+        android:title="@string/pref_function"
+        android:dialogTitle="@string/pref_function"
+        android:entries="@array/pref_function_entries"
+        android:entryValues="@array/pref_function_values"
+        android:defaultValue="@string/pref_function_default" />
+    
+   	<ListPreference
+        android:dependency="pref_branche"
+        android:key="pref_branche"
+        android:title="@string/pref_branche"
+        android:dialogTitle="@string/pref_branche"
+        android:entries="@array/pref_branche_entries"
+        android:entryValues="@array/pref_branche_values"
+        android:defaultValue="@string/pref_branche_default" />
+    
+    <CheckBoxPreference
+        android:key="pref_autoStammMode"
+        android:title="@string/pref_autoStammMode"
+        android:summaryOn="@string/pref_autoStammMode_sumOn"
+        android:summaryOff="@string/pref_autoStammMode_sumOff"
+        android:defaultValue="true" />
+    
+</PreferenceScreen>
