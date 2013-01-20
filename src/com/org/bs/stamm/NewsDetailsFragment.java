@@ -65,7 +65,7 @@ public class NewsDetailsFragment extends Fragment {
 		
 		((TextView) layout.findViewById(R.id.news_author)).setText(currentNews.getAuthor());
 		
-		((TextView) layout.findViewById(R.id.news_date)).setText(currentNews.getDate());
+		((TextView) layout.findViewById(R.id.news_date)).setText(currentNews.getDateString());
     	
 		return layout;
     }

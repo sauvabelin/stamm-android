@@ -2,6 +2,7 @@ package com.org.bs.stamm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -19,10 +20,8 @@ public class NewsListFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        
-        // populate list with our news titles
-        setListAdapter(new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, Mocks.getInstance().getNewsTitles()));
+                
+    	populateList();
         
         // Check to see if we have a frame in which to embed the details
         // fragment directly in the containing UI.
@@ -41,6 +40,23 @@ public class NewsListFragment extends ListFragment {
             // Make sure our UI is in the correct state.
             showDetails(mCurCheckPosition);
         }
+    }
+    
+    @Override
+    public void onResume() {
+    	// TODO Auto-generated method stub
+    	super.onResume();
+    	
+    	populateList();
+    }
+    
+    private void populateList() {
+        String function = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("pref_function", "toutes");
+        String branch = PreferenceManager.getDefaultSharedPreferences(this.getActivity()).getString("pref_branche", "toutes");
+        
+        // populate list with our news titles
+        setListAdapter(new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, Mocks.getInstance().getNewsTitles(function, branch)));
     }
 
     @Override

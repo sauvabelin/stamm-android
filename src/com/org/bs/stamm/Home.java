@@ -4,7 +4,10 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -39,23 +42,44 @@ public class Home extends FragmentActivity {
         
         Mocks.initInstance();
         
-        Calendar c = Calendar.getInstance();
         
-        if(c.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY && c.get(Calendar.HOUR_OF_DAY) > 18 && c.get(Calendar.HOUR_OF_DAY) < 22 ) {
+        setContentView(R.layout.activity_home);
+        
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the app.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+        
+        
+        
+        Calendar c = Calendar.getInstance();
+        c.setFirstDayOfWeek(Calendar.MONDAY);
+        
+        /* DEBUG simulate Wednesday evening */
+//        c.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+//        c.set(Calendar.HOUR_OF_DAY, 20);
+        /* END DEBUG */
+        
+        /* Get the shared preferences */
+        SharedPreferences config = PreferenceManager.getDefaultSharedPreferences(this);
+        
+        /* Go in Stamm mode at Wednesday evening
+         * If auto Stamm mode option is activated
+         * If we don't asked explicitly normal mode
+         *  */
+        if(		config.getBoolean("pref_autoStammMode", true) && 
+        		getIntent().getBooleanExtra("firstRun", true) && 
+        		c.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY && 
+        		c.get(Calendar.HOUR_OF_DAY) > 18 && c.get(Calendar.HOUR_OF_DAY) < 22) {
         	Intent intent = new Intent(this, StammModeActivity.class);
         	intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-        } else {
-	        setContentView(R.layout.activity_home);
-	        
-	        // Create the adapter that will return a fragment for each of the three
-	        // primary sections of the app.
-	        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-	        
-	        // Set up the ViewPager with the sections adapter.
-	        mViewPager = (ViewPager) findViewById(R.id.pager);
-	        mViewPager.setAdapter(mSectionsPagerAdapter);
         }
+        
+        mViewPager.setCurrentItem(1);
     }
 
     @Override
@@ -121,7 +145,7 @@ public class Home extends FragmentActivity {
             	break;
             
             case 2:
-            	fragment = new ActivitiesMapFragment();
+            	fragment = new ActivitiesListFragment();
             	break;
             	
             case 3:

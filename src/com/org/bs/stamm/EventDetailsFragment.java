@@ -1,10 +1,13 @@
 package com.org.bs.stamm;
 
+import java.util.GregorianCalendar;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewManager;
 import android.widget.TextView;
 
 public class EventDetailsFragment extends Fragment {
@@ -55,10 +58,23 @@ public class EventDetailsFragment extends Fragment {
 		((TextView) layout.findViewById(R.id.event_title)).setText(event.getTitle());
 		((TextView) layout.findViewById(R.id.event_text)).setText(event.getText());
 		((TextView) layout.findViewById(R.id.event_author)).setText(event.getAuthor());
-		((TextView) layout.findViewById(R.id.event_start_date)).setText(event.getStartDate());
+		((TextView) layout.findViewById(R.id.event_start_date)).setText(event.getStartDateString());
 		((TextView) layout.findViewById(R.id.event_start_time)).setText(event.getStartTime());
-		((TextView) layout.findViewById(R.id.event_end_date)).setText(event.getEndDate());
+		((TextView) layout.findViewById(R.id.event_end_date)).setText(event.getEndDateString());
 		((TextView) layout.findViewById(R.id.event_end_time)).setText(event.getEndTime());
+		
+		if(event.getStartDate().get(GregorianCalendar.DAY_OF_YEAR) == event.getEndDate().get(GregorianCalendar.DAY_OF_YEAR) &&
+				event.getStartDate().get(GregorianCalendar.HOUR_OF_DAY) == 0 &&
+				event.getStartDate().get(GregorianCalendar.MINUTE) == 0 &&
+				event.getEndDate().get(GregorianCalendar.HOUR_OF_DAY) == 0 &&
+				event.getEndDate().get(GregorianCalendar.MINUTE) == 0
+				) {
+
+			((TextView) layout.findViewById(R.id.labelFin)).setHeight(0);
+			((TextView) layout.findViewById(R.id.labelFin)).setText(null);
+			((TextView) layout.findViewById(R.id.event_end_date)).setText("Dure toute la journée");
+			((TextView) layout.findViewById(R.id.event_end_time)).setText(null);
+		}
     	
 		return layout;
     }

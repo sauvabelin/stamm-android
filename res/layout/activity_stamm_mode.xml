@@ -1,14 +1,61 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StammModeActivity" >
+    android:orientation="vertical" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/stamm_news_title"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Hello" />
+        android:background="#33B5E5"
+        android:gravity="center"
+        android:text="NEWS"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF" />
 
-</RelativeLayout>
+    <ListView
+        android:id="@+id/stamm_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/stamm_events_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33B5E5"
+        android:gravity="center"
+        android:text="SEANCES/INFOS"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF" />
+
+    <ListView
+        android:id="@+id/stamm_events_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/stamm_tasks_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33B5E5"
+        android:gravity="center"
+        android:text="TACHES"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#FFFFFF" />
+
+    <ListView
+        android:id="@+id/stamm_tasks_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
+
+    </ListView>
+
+</LinearLayout>

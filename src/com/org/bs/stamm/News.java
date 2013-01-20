@@ -1,26 +1,35 @@
 package com.org.bs.stamm;
 
+import java.util.GregorianCalendar;
+import java.util.Vector;
+
+import android.text.format.DateFormat;
+
 public class News {
 	
 	private String title;
 	private String text;
 	private String author;
-	private String date;
+	private GregorianCalendar date;
+	private Vector<String> fonctions;
+	private Vector<String> branches;
 	
-	News(String title, String text, String author, String date) {
+	News(String title, String text, String author, GregorianCalendar date, Vector<String> fonctions, Vector<String> branches) {
 		this.title = title;
 		this.text = text;
 		this.author = author;
 		this.date = date;
+		this.fonctions = fonctions;
+		this.branches = branches;
 	}
 
 	
 	public String getTitle()  {
-		return this.title;
+		return title;
 	}
 	
 	public String getText()  {
-		return this.text;
+		return text;
 	}
 	
 	public String getAbstract() {
@@ -28,10 +37,22 @@ public class News {
 	}
 	
 	public String getAuthor()  {
-		return this.author;
+		return author;
 	}
 	
-	public String getDate()  {
-		return this.date;
+	public GregorianCalendar getDate()  {
+		return date;
+	}
+	
+	public String getDateString() {
+		return (String) DateFormat.format("E d MMMM yyyy", date);
+	}
+	
+	public Vector<String> getFonctions() {
+		return fonctions;
+	}
+	
+	public Vector<String> getBranches() {
+		return branches;
 	}
 }

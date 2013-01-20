@@ -5,6 +5,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 
 /**
  * @author CMR
@@ -17,6 +18,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
     private ListPreference mPrefFunction;
     private ListPreference mPrefBranche;
+    
+    private PreferenceManager mPreferenceManager;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,8 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 
         mPrefFunction = (ListPreference) getPreferenceScreen().findPreference(KEY_PREF_FUNCTION);
         mPrefBranche = (ListPreference) getPreferenceScreen().findPreference(KEY_PREF_BRANCHE);
+        
+        mPreferenceManager = getPreferenceManager();
     }
     
 
@@ -36,10 +41,17 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(KEY_PREF_FUNCTION)) {
         	mPrefFunction.setSummary("Affiche les infos concernant :  " + sharedPreferences.getString(key, "")); 
-        }
-        else if (key.equals(KEY_PREF_BRANCHE)) {
+        } else if (key.equals(KEY_PREF_BRANCHE)) {
         	mPrefBranche.setSummary("Affiche les infos concernant :  " + sharedPreferences.getString(key, "")); 
         }
+    }
+    
+    public SharedPreferences getSharedPreferences() {
+        if (mPreferenceManager == null) {
+            return null;
+        }
+
+        return mPreferenceManager.getSharedPreferences();
     }
     
     @Override

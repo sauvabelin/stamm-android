@@ -5,42 +5,51 @@ import java.util.Locale;
 
 import java.text.SimpleDateFormat;
 
-public class Event {
+import com.google.android.gms.maps.model.LatLng;
+
+public class Activite {
 	
-	private String title;
-	private String text;
-	private String author;
+	private String unit;
+	private String subUnit;
+	
 	private GregorianCalendar startDate;
 	private GregorianCalendar endDate;
+
+	private String comment;
+	
+	private LatLng position;
 	
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("E d MMMM yyyy", Locale.getDefault());
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("'à' HH'h'mm", Locale.getDefault());
 	
-	
-	Event(String title, String text, String author,
-			GregorianCalendar startDate, GregorianCalendar endDate) {
-		this.title = title;
-		this.text = text;
-		this.author = author;
+	Activite(String unit, String subUnit, String comment,
+			GregorianCalendar startDate, GregorianCalendar endDate, LatLng position) {
+		this.unit = unit;
+		this.subUnit = subUnit;
+		this.comment = comment;
 		this.startDate= startDate; 
 		this.endDate = endDate;
-	}
-
-	
-	public String getTitle()  {
-		return title;
+		this.position = position;
 	}
 	
-	public String getText()  {
-		return text;
+	public String getTitle() {
+		return getUnit() + " - " + getSubUnit();
 	}
 	
-	public String getAbstract() {
-		return getText().substring(0, 50) + "...";
+	public String getUnit() {
+		return unit;
 	}
 	
-	public String getAuthor()  {
-		return author;
+	public String getSubUnit() {
+		return subUnit;
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+	
+	public LatLng getPosition() {
+		return position;
 	}
 	
 	public GregorianCalendar getStartDate()  {
